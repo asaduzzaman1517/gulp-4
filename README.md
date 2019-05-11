@@ -58,6 +58,7 @@
   <h3><li>Uses JS Vendor scripts</li></h3>
   
   In gulpfile.js find vendorJs variable and add relative path of your plugins (ex; jquery, bootstrap) See bellow:
+  <br/>
   <code>const vendorJs = [
   "node_modules/package_name/package_script.js",
   "node_moduled/another_package_name/another_package_script.js"
