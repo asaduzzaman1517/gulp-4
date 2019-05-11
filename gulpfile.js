@@ -37,6 +37,10 @@ const sassWatch = "dist/css/**/*";
 const jsSrc = "src/js/**/*.js";
 const jsDist = "dist/js/";
 const jsWatch = "dist/js/**/*";
+
+//Vendor JS
+const vendorJsSrc = [];
+
 //HTML
 function html() {
   return src(htmlSrc).pipe(dest(htmlDist));
@@ -87,7 +91,21 @@ function js() {
         presets: ["@babel/env"]
       })
     )
-    .pipe(concat("bundle.js"))
+    .pipe(concat("scripts.js"))
+    .pipe(uglify())
+    .pipe(lineEnd())
+    .pipe(dest(jsDist, { sourcemaps: true }));
+}
+
+//Vendor JS
+function vendorJs() {
+  return src(vendorJsSrc, { sourcemaps: true })
+    .pipe(
+      babel({
+        presets: ["@babel/env"]
+      })
+    )
+    .pipe(concat("vendor.js"))
     .pipe(uglify())
     .pipe(lineEnd())
     .pipe(dest(jsDist, { sourcemaps: true }));
@@ -113,6 +131,7 @@ function serv() {
     watch(imgSrc, img),
     watch(sassSrcWatch, style),
     watch(jsSrc, js),
+    watch(vendorJsSrc, vendorJs),
     watch([htmlWatch, jsWatch, fontWatch, imgWatch, sassWatch]).on(
       "change",
       browserSync.reload
