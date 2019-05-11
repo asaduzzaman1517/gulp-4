@@ -16,20 +16,50 @@
   <h3><li>Run default gulp task (will open browser window with live reload)</li></h3>
   <code>gulp</code>
   <h3><li>List of npm packages used</li></h3>
-  <ul><li><code>gulp 4</code></li>
-  <li><code>browser-sync</code></li>
-  <li><code>gulp-sourcemaps</code></li>
-  <li><code>gulp-autoprefixer</code></li>
-  <li><code>gulp-sass</code></li>
-    <li><code>gulp-concat</code></li>
-    <li><code>gulp-imagemin</code>
-    <ul>
-      <li>lossless compress</li>
-      <li>lossy compress</li>
-    </ul>
+  <ul>
+    <li>
+      <code>gulp 4</code>
     </li>
-    <li><code>@babel for es6 code</code></li>
-    <li><code>uglify</code></li>
-    <li><code>gulp-line-ending-corrector</code></li>
-    <li><code>clean</code></li>
+    <li>
+      <code>browser-sync</code>
+    </li>
+    <li>
+      <code>gulp-sourcemaps</code>
+    </li>
+    <li>
+      <code>gulp-autoprefixer</code>
+    </li>
+    <li>
+      <code>gulp-sass</code>
+    </li>
+      <li>
+        <code>gulp-concat</code>
+    </li>
+      <li>
+        <code>gulp-imagemin</code>
+      <ul>
+        <li>lossless compress</li>
+        <li>lossy compress</li>
+      </ul>
+      </li>
+      <li>
+        <code>@babel for es6 code</code>
+    </li>
+      <li>
+        <code>uglify</code>
+    </li>
+      <li>
+        <code>gulp-line-ending-corrector</code>
+    </li>
+      <li>
+        <code>clean</code>
+    </li>
+  </ul>
+  <h3><li>Uses JS Vendor scripts</li></h3>
+  
+  In gulpfile.js find vendorJs variable and add relative path of your plugins (ex; jquery, bootstrap) See bellow:
+  <code>const vendorJs = [
+  "node_modules/package_name/package_script.js",
+  "node_moduled/another_package_name/another_package_script.js"
+    ]</code>
 </ol>
