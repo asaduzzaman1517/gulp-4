@@ -38,7 +38,7 @@ const jsSrc = "src/js/**/*.js";
 const jsDist = "dist/js/";
 const jsWatch = "dist/js/**/*";
 
-//Vendor JS
+//Vendor JS Path
 const vendorJsSrc = [];
 
 //HTML
