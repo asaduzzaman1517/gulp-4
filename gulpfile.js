@@ -147,5 +147,6 @@ exports.style = style;
 exports.js = js;
 exports.clean = clean;
 exports.serv = serv;
+exports.vendorJs = vendorJs;
 //Exports Default
-exports.default = series(clean, parallel(html, fonts, img, style, js), serv);
+exports.default = series(clean, parallel(html, fonts, img, style, js, vendorJs), serv);
