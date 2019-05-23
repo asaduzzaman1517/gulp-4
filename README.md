@@ -63,7 +63,7 @@
   "node_modules/package_name/package_script.js",<br/>
   "node_moduled/another_package_name/another_package_script.js"<br/>
     ]</code><br/>
-    <h3><li>Uses JS Vendor scripts</li></h3>
+    <h3><li>Uses Vendor CSS/SCSS</li></h3>
   
   In gulpfile.js find vendorCssSrc variable and add relative path of your plugins (ex; jquery, bootstrap) See bellow:
   <br/><br/>
