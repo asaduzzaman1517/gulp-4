@@ -23,6 +23,7 @@
     "node-sass": "^4.12.0"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "gulp-imagemin": "^5.0.3",
     "imagemin-jpeg-recompress": "^6.0.0",
     "imagemin-pngquant": "^7.0.0"

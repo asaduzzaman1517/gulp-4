@@ -33,13 +33,16 @@ const sassDist = "dist/css/";
 const sassSrcWatch = "src/scss/**/*";
 const sassWatch = "dist/css/**/*";
 
+//Vendor CSS Path
+const vendorCssSrc = ["node_modules/bootstrap/dist/css/bootstrap.css"];
+
 //JS Path
 const jsSrc = "src/js/**/*.js";
 const jsDist = "dist/js/";
 const jsWatch = "dist/js/**/*";
 
 //Vendor JS Path
-const vendorJsSrc = [];
+const vendorJsSrc = ["node_modules/bootstrap/dist/js/bootstrap.js"];
 
 //HTML
 function html() {
@@ -78,6 +81,21 @@ function style() {
       }).on("error", sass.logError)
     )
     .pipe(autoprefixer())
+    .pipe(lineEnd())
+    .pipe(dest(sassDist, { sourcemaps: true }))
+    .pipe(browserSync.stream());
+}
+
+//Vendor CSS
+function vendorStyle() {
+  return src(vendorCssSrc, { sourcemaps: true })
+    .pipe(
+      sass({
+        outputStyle: "compressed"
+      }).on("error", sass.logError)
+    )
+    .pipe(autoprefixer())
+    .pipe(concat("vendor.css"))
     .pipe(lineEnd())
     .pipe(dest(sassDist, { sourcemaps: true }))
     .pipe(browserSync.stream());
@@ -130,6 +148,7 @@ function serv() {
     watch(fontSrc, fonts),
     watch(imgSrc, img),
     watch(sassSrcWatch, style),
+    watch(vendorCssSrc, vendorStyle),
     watch(jsSrc, js),
     watch(vendorJsSrc, vendorJs),
     watch([htmlWatch, jsWatch, fontWatch, imgWatch, sassWatch]).on(
@@ -144,9 +163,14 @@ exports.html = html;
 exports.fonts = fonts;
 exports.img = img;
 exports.style = style;
+exports.vendorStyle = vendorStyle;
 exports.js = js;
 exports.clean = clean;
 exports.serv = serv;
 exports.vendorJs = vendorJs;
 //Exports Default
-exports.default = series(clean, parallel(html, fonts, img, style, js, vendorJs), serv);
+exports.default = series(
+  clean,
+  parallel(html, fonts, img, style, vendorStyle, js, vendorJs),
+  serv
+);
